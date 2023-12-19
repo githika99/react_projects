@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "next",
+    "prettier",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  }
+}
