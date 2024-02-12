@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Cabin';
+    background-color: #758190;
+}
+
+#tentacles {
+    width: 50px;
+}
+
+.header {
+    display: flex;
+    background-color: lightblue;
+    padding: 1%;
+    align-items: center;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+
+.stats-container {
+    display: flex;
+    align-items: center;
+}
+
+.stats-container:hover {
+    cursor: pointer;
+    box-shadow: 0 0 30px lightblue;
+}
+
+.stats-card {
+    background-color: #a8b0bc;
+    border-radius: 7px;
+    padding: 1%;
+    margin: 1%;
+    width: 100%;
+    text-align: center;
+}
+
+#num-contributions, #total-raised, #num-games #num-your-donations #num-your-games{
+    font-size: 50px;
+}
+
+#games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Added this for log in*/
+#login-btn {
+    margin-left: auto; /* This will push the button to the right */
+    background-color: #3498db; /* Change the background color as needed */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+#login-btn:hover .dropdown-content {
+    display: block;
+}
+
+
+.game-img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #FFFFFF;
+}
+
+.game-card {
+    background-color: #FFFFFF;
+    padding: 1%;
+    margin: 1%;
+    width: 300px;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.game-card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 30px lightblue;
+}
+
+#button-container {
+    text-align: center;
+}
+
+button {
+    font-family: 'Cabin';
+    border: none;
+    padding: 1%;
+    margin: 1%;
+    border-radius: 7px;
+}
+
+/* Add this to your CSS file or within a <style> block */
+.donate-now-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add this to your CSS or style section */
+.play-game-btn {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    margin-right: 10px; /* Adjust margin as needed */
+    cursor: pointer;
+}
+
