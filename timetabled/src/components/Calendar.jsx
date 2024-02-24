@@ -158,7 +158,7 @@ const Calendar = () => {
                 <td></td>
                 <td></td>
                 <Event event= "ASGN 3 DUE" color = 'red' location = 'Canvas'/> 
-                <td></td>
+                <Event event= "Project 1 DUE" color = 'red' location = 'CodePath'/> 
                 <td></td>
                 </tr>
 
