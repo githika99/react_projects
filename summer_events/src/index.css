@@ -23,15 +23,38 @@ table {
 }
 
 .Event {
-  width: 300px;
+  width: 350px;
   height: 500px;
   border-radius: 25px;
 }
 
-.Event h5, h4, h5 {
+.Event h5 h6{
+  overflow-wrap: break-word; /* Allow text to wrap onto the next line */
+  word-wrap: break-word; /* For wider browser compatibility */
+  max-width: 100%; /* Ensure the text doesn't exceed the container's width */
   line-height: 0px;
   text-align: center;
 }
+
+.Event img {
+  max-width: 100%; /* Ensures the image fills the container */
+  max-height: 100%; /* Ensures the image fills the container */
+  width: auto; /* Ensures the image's width is determined by its aspect ratio */
+  height: auto; /* Ensures the image's height is determined by its aspect ratio */
+}
+
+/* .my-button {
+  background-color: #ffe0f8;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.my-button:hover {
+  background-color: #ffe0f8;
+} */
 
 .pink {
   background: pink;

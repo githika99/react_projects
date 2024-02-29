@@ -16,7 +16,7 @@ const Grid = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><Event event="Summer of Music" color='red' location='2324B Market St, San Francisco, CA 94114' date_time='06/17/2024 2:00 pm - 5:00 pm' link='https://www.summerofmusicsf.com' image='src/assets/392207_a.jpg' /></td>
+                        <td><Event event="Summer of Music" color='red' location='2324B Market St, San Francisco, CA 94114' date_time='06/17/2024 2:00 pm - 5:00 pm' link='https://www.summerofmusicsf.com' image='src/assets/img1.webp' /></td>
                         <td><Event event="Bay Area KidFest 2024" color='green' location='2450 Grant St, Concord, CA 94520' date_time='05/25/2024 10:00 am - 5:00 pm' link='https://www.eventbrite.com/e/bay-area-kidfest-2024-tickets-764211355737' image='src/assets/392207_a.jpg' /></td>
                         <td><Event event="SF’s Museum of Craft and Design" color='pink' location='2569 Third Street, San Francisco, CA 94107' date_time='05/15/2024 10:00 am - 5:30 pm' link='https://sfmcd.org/visit/#tickets' image='src/assets/392207_a.jpg' /></td>
                         <td><Event event="Speakeasy Comedy Show and Cocktail Night" color='orange' location='Sign up to be emailed secret location!' date_time='05/18/2024 7:00pm - 11:00 pm' link='https://www.eventbrite.com/e/hellasecret-speakeasy-comedy-cocktail-night-oakland-2024-tickets-122771929145?aff=FCEventPage&discount=funcheap' image='src/assets/392207_a.jpg' /></td>
