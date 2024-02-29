@@ -19,13 +19,33 @@ td {
 }
 
 table {
-  border-spacing: 15px; /* Remove the default spacing between cells */
+  border-spacing: 15px; /*spacing between cells*/
 }
 
 .Event {
-  width: 350px;
+  width: 350px; /*don't think this is doing anything*/
   height: 500px;
   border-radius: 25px;
+}
+.Event.orange:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(255, 210, 142, 0.5);
+}
+.Event.yellow:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(255, 247, 139, 0.5); 
+}
+.Event.green:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(195, 255, 192, 0.5); 
+}
+.Event.blue:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(183, 223, 255, 0.5); 
+}
+.Event.pink:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(255, 217, 255, 0.5); 
 }
 
 .Event h5 h6{
@@ -43,18 +63,46 @@ table {
   height: auto; /* Ensures the image's height is determined by its aspect ratio */
 }
 
-/* .my-button {
-  background-color: #ffe0f8;
-  color: #fff;
+.my-button {
+  background-color: #ffffff;
+  color: #000000;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 7px;
 }
 
-.my-button:hover {
-  background-color: #ffe0f8;
-} */
+.Event.orange .my-button:hover {
+  background-color: rgb(0, 0, 0);
+  color: #fffefe;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(255, 210, 142, 0.5);
+}
+.Event.yellow .my-button:hover {
+  background-color: rgb(0, 0, 0);
+  color: #fffefe;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(255, 247, 139, 0.5); 
+}
+.Event.green .my-button:hover {
+  background-color: rgb(0, 0, 0);
+  color: #fffefe;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(195, 255, 192, 0.5); 
+}
+.Event.blue .my-button:hover {
+  background-color: rgb(0, 0, 0);
+  color: #fffefe;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(183, 223, 255, 0.5); 
+}
+.Event.pink .my-button:hover {
+  background-color: rgb(0, 0, 0);
+  color: #fffefe;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 5px rgba(255, 217, 255, 0.5); 
+}
 
 .pink {
   background: pink;
@@ -68,10 +116,10 @@ table {
   background: rgb(202, 245, 222);
 } 
 
-.orange {
+.yellow {
   background: rgb(255, 234, 165);
 } 
 
-.red {
-  background: rgb(255, 132, 132);
+.orange {
+  background: rgb(248, 203, 164);
 } 
