@@ -158,12 +158,8 @@ const Calendar = () => {
                 <td></td>
                 <td></td>
                 <Event event= "ASGN 3 DUE" color = 'red' location = 'Canvas'/> 
-<<<<<<< HEAD
                 <Event event= "Project 1 DUE" color = 'red' location = 'CodePath'/> 
-=======
                 <Event event= "Project 1 DUE" color = 'red' location = 'CodePath Submission'/> 
->>>>>>> de2ff39 (text overlap and no link button yet. also picture is same in all boxes)
-                <td></td>
                 </tr>
 
                 </tbody>
