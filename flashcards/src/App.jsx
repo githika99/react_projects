@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import Card from './components/Card';
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
@@ -19,11 +18,24 @@ function App() {
     { id: 9, side1: 'question 9', side2: "answer 9"},
   ]
 
+  const [display, setDisplay] = useState(arr[card]["side1"])
 
-  function arrowClick(){ //make this a parameter value
+
+  function handleClick2(){ 
+    console.log("card flipped, handleClick2");
+    setDisplay(prevDisplay => {
+        return prevDisplay === arr[card]["side1"] ? arr[card]["side2"] : arr[card]["side1"];
+      });
+  }
+
+  function arrowClick(){ 
     console.log("arrow pressed");
-    setCard((prevCard) => (prevCard + 1) % total);
-    console.log("card is now", card);
+    setCard((prevCard) => {                       //before, we had this setCard((prevCard) => (prevCard + 1) % total);
+      const newCard = (prevCard + 1) % total;     //that function implicitly returns the new card
+      console.log("card is now", newCard);        //it also knows that the parameter is prevCard, even if we don't call it that
+      setDisplay(arr[newCard]["side1"]);
+      return newCard;                             //this line actually changes the value of card
+    });
   }
 
 
@@ -32,7 +44,10 @@ function App() {
     <h1>Human Perception: Visual and Auditory</h1>
     <h3>Learn all about our visual and auditory sensory perception. This study guide does not heavily delve into the neural aspects of these processes.</h3>
 
-    <Card side1 = {arr[card]['side1']} side2 = {arr[card]['side2']}></Card>
+    {/* we need to include card here. so that when card changes, display changes*/}
+    <div className = "FlashCard" onClick = {handleClick2}> 
+      <h2>{display}</h2>
+    </div>
 
     <img className = 'NextButton' src = 'src/assets/arrow.png' onClick = {arrowClick}></img> 
     
