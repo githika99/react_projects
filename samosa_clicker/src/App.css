@@ -1,0 +1,30 @@
+.samosaObj{
+  justify-content: center;
+}
+
+.samosaObj:hover{
+  transform: scale(1.1);
+}
+
+.Event {
+  width: 250px;
+  height: 150px;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: #646cff;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.Event:hover {
+  transform: scale(1.05);
+}
+
+.Event h3 h4 h5{
+  text-align: center;
+}
+
+
