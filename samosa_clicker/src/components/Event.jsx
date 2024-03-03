@@ -5,10 +5,12 @@ const Event = (props) => {
     const handleClick = () => {
         console.log("Clicked:", props.title);
         console.log("Current samosa count:", props.samosa);
-        //const numSamosas = parseInt(props.num_samosas);
-        //if (props.samosa >= numSamosas) {
+        console.log("Current multipler:", props.multipler);
+        const numSamosas = parseInt(props.num_samosas);
+        if (props.samosa >= numSamosas) {
             props.setSamosa(props.samosa - parseInt(props.num_samosas)); 
-        //}
+            props.setMultipler(props.multipler * props.mult);
+        }
     };
 
 

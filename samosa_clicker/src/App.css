@@ -1,12 +1,34 @@
-.samosaObj{
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.samosaObj{
+  display: block;
+  margin: 0 auto;
 }
 
 .samosaObj:hover{
   transform: scale(1.1);
 }
 
+h1, h2{
+  text-align: center;
+}
+
+.Event_Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .Event {
+  margin: 0 10px;
   width: 250px;
   height: 150px;
   border-radius: 8px;
@@ -18,13 +40,14 @@
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+  text-align: center;
 }
 .Event:hover {
   transform: scale(1.05);
 }
 
 .Event h3 h4 h5{
-  text-align: center;
+  margin:0;
 }
 
 
