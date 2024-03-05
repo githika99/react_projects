@@ -1,3 +1,6 @@
+// source code is taken from this React Router tutorial
+// https://reactrouter.com/en/main/start/tutorial
+
 export default function Root() {
   return (
     <>
