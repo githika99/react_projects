@@ -1,37 +1,16 @@
-// source code is taken from this React Router tutorial
-// https://reactrouter.com/en/main/start/tutorial
+// concepts is taken from this React Router tutorial
+// https://github.com/remix-run/react-router/blob/main/examples/basic/src/App.tsx
 
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import "./index.css";
-import Root from "./routes/root.jsx";
-import ErrorPage from "./pages/error-page.jsx";
-
-import SamosaKitchen from "./pages/kitchen.jsx";
-import TestPage from "./pages/testpage.jsx";
-
-// ----------------
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/kitchen",
-    element: <SamosaKitchen />,
-  },
-  {
-    path: "/testroute",
-    element: <TestPage />,
-  },
-]);
-
-// ----------------
+import App from "./app";
+// --------------------
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
