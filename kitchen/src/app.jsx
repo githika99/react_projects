@@ -40,17 +40,12 @@ const Layout = () => {
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/kitchen">Kitchen</Link>
-          </li>
-          <li>
-            <Link to="/testroute">Test Page</Link>
-          </li>
-        </ul>
+        <div>
+          &nbsp; &nbsp;
+          <Link to="/">Home</Link> &nbsp; &nbsp;
+          <Link to="/kitchen">Kitchen</Link>&nbsp; &nbsp;
+          <Link to="/testroute">Test Page</Link>&nbsp; &nbsp;
+        </div>
       </nav>
 
       <hr />
