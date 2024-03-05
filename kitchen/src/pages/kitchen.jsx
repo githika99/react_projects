@@ -3,6 +3,7 @@ import Event from "../components/Event";
 
 import "../App.css";
 
+// --------------------------------------------
 function SamosaKitchen() {
   // function useState() {
   //   //reconciliation algorithm
@@ -13,24 +14,46 @@ function SamosaKitchen() {
 
   const [multipler, setMultipler] = useState(1);
 
+  const [samosaPacks, setSamosaPacks] = useState([]);
+
+  // -------------------
   function handleSamosa() {
     //make this a parameter value
     console.log("Current multipler:", multipler);
+    //console.log("---- samosaPacks:", samosaPacks);
+
     setSamosa(samosa + multipler);
   }
 
+  // ----- this function will add the "customer Order text" to the array
+  const addSamosaPacksToArray = (orderText) => {
+    samosaPacks.push(orderText);
+  };
+
+  // ---- this function displays customer orders as soon as they are ready
+  const DisplaySamosaOrderPacks = () => {
+    return (
+      <ul>
+        {samosaPacks.map((orderText, index) => (
+          <li key={index}>
+            order #{index + 1}: {orderText}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  // ----------------------
   return (
     <>
-      <h1>Samosa Selector</h1>
-
+      <h1>Samosa Kitchen...</h1>
+      <DisplaySamosaOrderPacks />
       <img
         className="samosaObj"
         src="/assets/samosa.png"
         onClick={handleSamosa}
       ></img>
-
       <h2>Count: {samosa}</h2>
-
       <div class="Event_Wrapper">
         <Event
           title="Double Stuffed"
@@ -40,6 +63,7 @@ function SamosaKitchen() {
           setSamosa={setSamosa}
           multipler={multipler}
           setMultipler={setMultipler}
+          addSamosaPacksToArray={addSamosaPacksToArray}
         ></Event>
         <Event
           title="Party Pack"
@@ -49,6 +73,7 @@ function SamosaKitchen() {
           setSamosa={setSamosa}
           multipler={multipler}
           setMultipler={setMultipler}
+          addSamosaPacksToArray={addSamosaPacksToArray}
         ></Event>
         <Event
           title="Full Feast"
@@ -58,6 +83,7 @@ function SamosaKitchen() {
           setSamosa={setSamosa}
           multipler={multipler}
           setMultipler={setMultipler}
+          addSamosaPacksToArray={addSamosaPacksToArray}
         ></Event>
       </div>
     </>
