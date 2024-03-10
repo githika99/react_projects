@@ -48,7 +48,7 @@ function App() {
     <h5>Number of cards: {total}</h5>
 
     {/* we need to include card here. so that when card changes, display changes*/}
-    <div className = {"FlashCard" + arr[card]['color']} onClick = {handleClick2}> 
+    <div className = {"FlashCard " + arr[card]['color']} onClick = {handleClick2}> 
       <h2>{display}</h2>
     </div>
 
