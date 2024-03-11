@@ -28,7 +28,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features: Please view at https://imgur.com/dADnQOI if it is not visible in the GIF preview.
+Here's a walkthrough of implemented required features: Please view at [https://imgur.com/dADnQOI](https://imgur.com/a/hVODGGR) if it is not visible in the GIF preview.
 
 <img src='https://imgur.com/dADnQOI' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
