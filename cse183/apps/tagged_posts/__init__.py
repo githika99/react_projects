@@ -1,3 +1,3 @@
 
-#from .controllers import startpage
-from .controllers import noauthstartpage
+from .controllers import startpage
+#from .controllers import noauthstartpage
