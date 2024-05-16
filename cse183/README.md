@@ -17,3 +17,6 @@ python3 -m pip install --upgrade py4web --no-cache-dir
 py4web run apps -d tagged_posts
 
 # open browser http://localhost:8000/tagged_posts
+
+# to execute a function inside a file  /tagged_posts/test.py/
+py4web call apps tagged_posts.test.myfn
