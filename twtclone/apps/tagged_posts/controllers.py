@@ -62,8 +62,13 @@ def posts():
 @action("api/posts", method="POST")
 def posts():
     tweet_text = request.forms.get('tweet_text')
+    db.post_item.insert(content=tweet_text)
+    db.commit()
+    rows = db().select(db.post_item.ALL)
+    print("rows: ", rows)
 
-    return {"posts": "----  22we need to insert this NEW POST into database -----------", "tweet": {"content": tweet_text, "created_on": "05/01/2024", "created_by": "Easy Peasy Gir" }}
+    return {"post_item":rows, "content": tweet_text }
+
 
 # ---------- basic test funcitons to test different ROUTES ------------------------------------------------------
 import datetime
