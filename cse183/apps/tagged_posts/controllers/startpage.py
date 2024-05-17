@@ -28,7 +28,8 @@ def index():
 
 # ----------------------------------------------------------------
 import datetime
-from py4web import action
+from py4web import action , response, request
+
 
 @action('index2')
 def page():
@@ -60,7 +61,9 @@ def tags():
 
 @action("api/posts", method="GET")
 def posts():
+
     return {"posts": [
+        { "content": post_data, "created_on": "05/01/2024", "created_by": "Easy Peasy Gir" },
         {"content": "Sky is going to drop to night..... :-).", "created_on": "05/01/2024", "created_by": "Easy Peasy Gir"},
         {"content": "Sky is going to drop to night..... :-).", "created_on": "05/01/2024", "created_by": "Easy Peasy Gir"}
         ]}
@@ -68,4 +71,6 @@ def posts():
 
 @action("api/posts", method="POST")
 def posts():
-    return {"posts": "---- we need to insert this NEW POST into database -----------"}
+    tweet_text = request.forms.get('tweet_text')
+
+    return {"posts": "----  22we need to insert this NEW POST into database -----------", "tweet": {"content": tweet_text, "created_on": "05/01/2024", "created_by": "Easy Peasy Gir" }}
