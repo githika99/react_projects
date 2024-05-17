@@ -17,10 +17,12 @@ auth.param.password_complexity = {"entropy": 2}   # higher the number, higher th
 
 @action('index')
 @action.uses(auth)
+@action.uses("page1.html")
 def index():
     user = auth.get_user() or redirect(URL('auth/login'))
-    #print("user: ", user)
-    return 'Welcome ------- %s' % user.get('first_name')
+    print("user: ", user)
+    return {"user": user}
+    #return 'Welcome ------- %s' % user.get('first_name')
 
 
 
