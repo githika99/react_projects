@@ -58,16 +58,37 @@ def posts():
     ]
     }
 
+# -------------------------------
+def split_text_and_hashtags(text):
+  """
+  This function splits a text string containing hashtags into the text itself
+  and a list of hashtags.
+  Args:
+      text: The text string to split.
+  Returns:
+      A tuple containing the text and a list of hashtags.
+  """
+  words = text.split()
+  hashtags = [word[1:] for word in words if word.startswith('#')]
+  text = ' '.join([word for word in words if not word.startswith('#')])
+  return text, hashtags
+
+
 # this is wokring .....
 @action("api/posts", method="POST")
 def posts():
     tweet_text = request.forms.get('tweet_text')
-    db.post_item.insert(content=tweet_text)
+    text, hashtags = split_text_and_hashtags(tweet_text)
+    
+    postID = db.post_item.insert(content=text)
+    for hashtag in hashtags:
+        db.tag_item.insert(post_item_id=postID, name=hashtag)
     db.commit()
-    rows = db().select(db.post_item.ALL)
-    print("rows: ", rows)
+    tweets = db().select(db.post_item.ALL)
+    tags = db().select(db.tag_item.ALL)
+    print("tags: ", tags)
 
-    return {"post_item":rows, "content": tweet_text }
+    return {"posts":tweets, "tags": tags }
 
 
 # ---------- basic test funcitons to test different ROUTES ------------------------------------------------------
