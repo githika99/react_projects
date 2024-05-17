@@ -46,19 +46,26 @@ def index():
 #-------------------------                  ----------------------------------
 @action("api/tags", method="GET")
 def tags():
-    return {"tags": ["news", "technology", "sports"] }
+    data = db().select(db.tag_item.name, distinct=True)
+    tags = [tag["name"] for tag in data]
 
+    return {"tags": tags }
 
+# --------------------------------------------------------
 @action("api/posts", method="GET")
 def posts():
+    tags = request.query.get('tags')
+    tag_list = tags.split(',') if tags else []
 
-    return {"posts": [
+    return {
+        "tags": tag_list,
+        "posts": [
         {"content": "Sky is going to drop to night..... :-).", "created_on": "05/01/2024", "created_by": "Easy Peasy Gir"},
         {"content": "Sky is going to drop to night..... :-).", "created_on": "05/01/2024", "created_by": "Easy Peasy Gir"}
     ]
     }
 
-# -------------------------------
+# ------------------
 def split_text_and_hashtags(text):
   """
   This function splits a text string containing hashtags into the text itself
@@ -74,7 +81,7 @@ def split_text_and_hashtags(text):
   return text, hashtags
 
 
-# this is wokring .....
+# ----------------------------------------------
 @action("api/posts", method="POST")
 def posts():
     tweet_text = request.forms.get('tweet_text')
@@ -89,6 +96,17 @@ def posts():
     print("tags: ", tags)
 
     return {"posts":tweets, "tags": tags }
+
+
+# ----------------------------------------------
+@action("api/posts/<post_item_id>", method="DELETE")
+def delete_posts(post_item_id):
+
+    query =  (db.tag_item.post_item_id == post_item_id)
+    myset = db(query)
+    myset.delete()
+
+    return {"status": 200 }
 
 
 # ---------- basic test funcitons to test different ROUTES ------------------------------------------------------
