@@ -82,13 +82,48 @@ def split_text_and_hashtags(text):
   return text, hashtags
 
 
+# --------------------
+import base64
+from datetime import datetime
+
+def encode(string):
+    """Encodes a string using Base64 encoding."""
+    encoded_bytes = base64.b64encode(string.encode('utf-8'))
+    return encoded_bytes.decode('utf-8')
+
+def decode(encoded_string):
+    """Decodes a Base64 encoded string."""
+    decoded_bytes = base64.b64decode(encoded_string.encode('utf-8'))
+    return decoded_bytes.decode('utf-8')
+
+# ------------------
+def generate_auth_signature(username):
+    """
+    This function generates an authentication signature for a given username.
+    Args:
+        username: The username for which to generate the signature.
+    Returns:
+        The authentication signature.
+    """
+    now = datetime.datetime.now()
+    timestamp = datetime.datetime.timestamp(now)
+
+    original_string = username + "::" + str(timestamp)
+    print(original_string, timestamp, now)
+    encoded_string = encode(original_string)
+    return encoded_string
+    
+
 # ----------------------------------------------
 @action("api/posts", method="POST")
 def posts():
     tweet_text = request.forms.get('tweet_text')
     text, hashtags = split_text_and_hashtags(tweet_text)
     
-    postID = db.post_item.insert(content=text)
+    username = auth.get_user().get('username')  # check why username is None, it should be logged in user
+    username = "gitu"
+    augh_sig_encoded = generate_auth_signature(username)
+    postID = db.post_item.insert(content=text, auth_signature=augh_sig_encoded)
     for hashtag in hashtags:
         db.tag_item.insert(post_item_id=postID, name=hashtag)
     db.commit()
