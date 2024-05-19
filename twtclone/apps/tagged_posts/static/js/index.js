@@ -14,11 +14,14 @@ app.make_entry = function () {
   };
 };
 
-app.selected_tags = function () {
-  return {
-    tags: "news",
-  };
+app.all_tags = ""; // init with empty string ; accuumulate all selcted tags here
+// ------------------------
+app.get_all_selected_tags = function (tag) {
+  let comma = app.all_tags.length > 0 ? "," : "";
+  app.all_tags = app.all_tags + comma + tag;
+  return app.all_tags;
 };
+
 // The vue input config object
 app.config = {};
 // The vue input setup() function returns the data to be exposed
@@ -44,11 +47,19 @@ app.config.methods = {
   },
 
   // -----------------------------------
-  query_for_changed_tags: function (mytags) {
-    let url = "/tagged_posts/api/posts?tags=" + mytags;
-    console.log("tags url is:", url);
-    //console.log(app.selected_tags(), "dfdfdf222");
-    axios.get(url).then(function (res) {
+  query_for_changed_tags: function (tag) {
+    const url = "/tagged_posts/api/posts/?";
+    const alltags = app.get_all_selected_tags(tag);
+    const parms = {
+      tags: alltags,
+    };
+    console.log("url params:", url, parms);
+
+    axios({
+      method: "get",
+      url: url,
+      params: parms,
+    }).then(function (res) {
       console.log(res.data);
       app.reload();
     });

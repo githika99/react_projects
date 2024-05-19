@@ -55,16 +55,40 @@ def tags():
 @action("api/posts", method="GET")
 def posts():
     tags = request.query.get('tags')   # these 2 lines no use for now
-    print("tags: are----", tags)
+    print("tags: are222----", tags)
     tag_list = tags.split(',') if tags else []
 
+    '''
+    posts = db.post_item
+    categories = db.tag_item
+
+    # Subquery to get relevant category IDs
+    category_subquery = categories.id.filter(categories.name.isin(tag_list))
+
+    # Join and filter posts based on category IDs
+    tweets =  (posts
+          .join(categories, on=(posts.id == categories.post_item_id))
+          .select(posts.ALL)  # Select all columns from the tweet_post table
+          .filter(categories.id.isin(category_subquery))
+         )
+    
+SELECT p.*
+FROM tweet_post p
+INNER JOIN tweet_category c ON p.id = c.tweet_post_id
+WHERE c.category_id IN (
+  SELECT id
+  FROM tweet_category
+  WHERE category_id IN (?, ?, ?)  -- Placeholder for category IDs
+)
+
+https://nicozanf.github.io/py4web-doc/en/master/chapter-07.html#find-exclude-sort
+
+'''
     tweets = db().select(db.post_item.ALL)
     tags_list = db().select(db.tag_item.name, distinct=True)
     tags = [tag["name"] for tag in tags_list]    
-    print("tags: ", tags)
+    print("tweets", tweets)
     return {"tweets":tweets, "tags": tags }
-
-
    
 
 # ------------------
@@ -129,7 +153,10 @@ def posts():
     postID = db.post_item.insert(content=text, auth_signature=augh_sig_encoded)
     for hashtag in hashtags:
         db.tag_item.insert(post_item_id=postID, name=hashtag)
+
+    #db(db.post_item.ALL).delete()
     db.commit()
+
 
     return {"msg": "DB recored inserted, new record ID is:" + str(postID) }
 
