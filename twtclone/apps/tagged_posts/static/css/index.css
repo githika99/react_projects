@@ -1,0 +1,27 @@
+/*****************************************************
+
+ styles for two column Layout used in /temlates/index.html, this css file is included in layout.html file
+  - wide column
+  - narrow column
+
+ *****************************************************/
+
+.tweetcontainer {
+  display: flex; /* Enables flexbox layout */
+  /*height: 100vh; /* Fills the viewport height */
+}
+
+.pane {
+  padding: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't affect width calculations */
+}
+
+.wide {
+  flex: 2 0 66.66%; /* Sets width to 2/3 with minimum and preferred size */
+  background-color: #f0f0f0;
+}
+
+.narrow {
+  flex: 1 0 33.33%; /* Sets width to 1/3 with minimum and preferred size */
+  background-color: #e0e0e0;
+}

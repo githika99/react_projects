@@ -1,25 +1,33 @@
 [[extend 'layout.html']]
 
 <div id="app">
-  <section>
-    <input placeholder="What is happening?!" v-model="new_entry.tweet_text" />
-    <button v-on:click="post_new_entry()">Post a Tweet</button>
-  </section>
+  <div class="tweetcontainer">
+    <div class="pane wide">
+      <section>
+        <input
+          placeholder="What is happening?!"
+          v-model="new_entry.tweet_text"
+        />
+        <button v-on:click="post_new_entry()">Post a Tweet</button>
+      </section>
 
-  <h4>These are Tags:</h4>
-  <div class="section" v-for="tag in tags">
-    <div>
-      <h5>{{tag}}</h5>
+      <h4>Your Tweet feed:</h4>
+      <div class="section" v-for="entry in tweets">
+        <div>
+          <div style="font-size: large">{{entry.content}}</div>
+          <div>Posted on {{entry.created_on}} by {{entry.created_by}}</div>
+          <br />
+        </div>
+      </div>
     </div>
-  </div>
-  <br />
 
-  <h4>Your Tweet feed:</h4>
-  <div class="section" v-for="entry in tweets">
-    <div>
-      <div style="font-size: large">{{entry.content}}</div>
-      <div>Posted on {{entry.created_on}} by {{entry.created_by}}</div>
-      <br />
+    <div class="pane narrow">
+      <h4>These are Tags:</h4>
+      <div class="section" v-for="tag in tags">
+        <div>
+          <h5>{{tag}}</h5>
+        </div>
+      </div>
     </div>
   </div>
 </div>
