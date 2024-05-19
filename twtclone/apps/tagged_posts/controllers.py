@@ -164,9 +164,12 @@ def posts():
 @action("api/posts/<post_item_id>", method="DELETE")
 def delete_posts(post_item_id):
 
-    query = (db.tag_item.post_item_id == post_item_id)
+    query = (db.tag_item.post_item_id == post_item_id) # to delete tag_item table record
     myset = db(query)
     myset.delete()
+    
+    db(db.post_item.id == post_item_id).delete()  # delete the post_item record
+
     db.commit()
     # one lineer below, but above 3 lines shows what is happening
     #db(db.tag_item.post_item.id == post_item_id).delete()
