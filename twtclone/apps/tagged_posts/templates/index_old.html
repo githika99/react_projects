@@ -1,0 +1,21 @@
+[[extend 'layout.html']]
+
+<div class="section">
+  <div class="vars">[[=message]]</div>
+</div>
+
+<div>
+  <h3>Welcome to Twitter Clone ..</h3>
+
+  <h4>Enter Tweeeeeeeeeet</h4>
+
+  <form action="/tagged_posts/api/posts" method="post" target="_blank">
+    <label for="fname">Tweet text</label>
+    <input type="text" id="tweet_text" name="tweet_text" /><br /><br />
+    <input type="submit" value="Submit" />
+  </form>
+
+  <p>
+    Click submit button, and the input will be sent to a page on the server.
+  </p>
+</div>

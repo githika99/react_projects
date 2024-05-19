@@ -54,16 +54,17 @@ def tags():
 # --------------------------------------------------------
 @action("api/posts", method="GET")
 def posts():
-    tags = request.query.get('tags')
+    tags = request.query.get('tags')   # these 2 lines no use for now
     tag_list = tags.split(',') if tags else []
 
-    return {
-        "tags": tag_list,
-        "posts": [
-        {"content": "Sky is going to drop to night..... :-).", "created_on": "05/01/2024", "created_by": "Easy Peasy Gir"},
-        {"content": "Sky is going to drop to night..... :-).", "created_on": "05/01/2024", "created_by": "Easy Peasy Gir"}
-    ]
-    }
+    tweets = db().select(db.post_item.ALL)
+    tags_list = db().select(db.tag_item.name, distinct=True)
+    tags = [tag["name"] for tag in tags_list]    
+    print("tags: ", tags)
+    return {"tweets":tweets, "tags": tags }
+
+
+   
 
 # ------------------
 def split_text_and_hashtags(text):
@@ -91,11 +92,8 @@ def posts():
     for hashtag in hashtags:
         db.tag_item.insert(post_item_id=postID, name=hashtag)
     db.commit()
-    tweets = db().select(db.post_item.ALL)
-    tags = db().select(db.tag_item.ALL)
-    print("tags: ", tags)
 
-    return {"posts":tweets, "tags": tags }
+    return {"msg": "DB recored inserted, new record ID is:" + str(postID) }
 
 
 # ----------------------------------------------
