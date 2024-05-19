@@ -154,7 +154,6 @@ def posts():
     for hashtag in hashtags:
         db.tag_item.insert(post_item_id=postID, name=hashtag)
 
-    #db(db.post_item.ALL).delete()
     db.commit()
 
 
