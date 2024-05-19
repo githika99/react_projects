@@ -11,21 +11,24 @@
         <button v-on:click="post_new_entry()">Post a Tweet</button>
       </section>
 
-      <h4>Your Tweet feed:</h4>
+      <h4>Tweet feed:</h4>
       <div class="section" v-for="entry in tweets">
         <div>
           <div style="font-size: large">{{entry.content}}</div>
-          <div>Posted on {{entry.created_on}} by {{entry.created_by}}</div>
+          <div>
+            Posted on {{entry.created_on}} by {{entry.created_by}}
+            <button v-on:click="post_new_entry()">Delete</button>
+          </div>
           <br />
         </div>
       </div>
     </div>
 
     <div class="pane narrow">
-      <h4>These are Tags:</h4>
+      <h4>Tags:33</h4>
       <div class="section" v-for="tag in tags">
         <div>
-          <h5>{{tag}}</h5>
+          <button v-on:click="query_for_changed_tags(tag)">{{tag}}</button>
         </div>
       </div>
     </div>

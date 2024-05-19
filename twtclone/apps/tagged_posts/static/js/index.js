@@ -13,6 +13,12 @@ app.make_entry = function () {
     tweet_text: "",
   };
 };
+
+app.selected_tags = function () {
+  return {
+    tags: "news",
+  };
+};
 // The vue input config object
 app.config = {};
 // The vue input setup() function returns the data to be exposed
@@ -23,14 +29,30 @@ app.config.setup = function () {
   };
 };
 
-// the vue methods to be exposed
-app.config.methods = {};
-app.config.methods.post_new_entry = function () {
-  axios.post("/tagged_posts/api/posts", app.vue.new_entry).then(function (res) {
-    console.log(res.data);
-    app.vue.new_entry = clone(app.make_entry());
-    app.reload();
-  });
+// ----------------------------
+app.config.methods = {
+  // -----------------------------------
+  post_new_entry: function () {
+    axios
+      .post("/tagged_posts/api/posts", app.vue.new_entry)
+      .then(function (res) {
+        //axios.post("/tagged_posts/api/posts", {"name": "gipsy"}).then(function (res) {
+        console.log(res.data);
+        app.vue.new_entry = clone(app.make_entry());
+        app.reload();
+      });
+  },
+
+  // -----------------------------------
+  query_for_changed_tags: function (mytags) {
+    let url = "/tagged_posts/api/posts?tags=" + mytags;
+    console.log("tags url is:", url);
+    //console.log(app.selected_tags(), "dfdfdf222");
+    axios.get(url).then(function (res) {
+      console.log(res.data);
+      app.reload();
+    });
+  },
 };
 
 app.reload = function () {

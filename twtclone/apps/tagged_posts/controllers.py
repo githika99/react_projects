@@ -55,6 +55,7 @@ def tags():
 @action("api/posts", method="GET")
 def posts():
     tags = request.query.get('tags')   # these 2 lines no use for now
+    print("tags: are----", tags)
     tag_list = tags.split(',') if tags else []
 
     tweets = db().select(db.post_item.ALL)
@@ -109,8 +110,10 @@ def generate_auth_signature(username):
     timestamp = datetime.datetime.timestamp(now)
 
     original_string = username + "::" + str(timestamp)
-    print(original_string, timestamp, now)
     encoded_string = encode(original_string)
+    print("--------ha ha")
+    print(original_string, encoded_string, timestamp, now)
+
     return encoded_string
     
 
