@@ -51,50 +51,61 @@ def tags():
 
     return {"tags": tags }
 
-# --------------------------------------------------------
-@action("api/posts", method="GET")
-def posts():
-    tags = request.query.get('tags')   # these 2 lines no use for now
-    print("tags: are222----", tags)
-    tag_list = tags.split(',') if tags else []
-
+# ----------------------- -------------------------
+def get_all_tweets():
     tweets = [] # init 
-    # this worked in  "py4web shell apps", see details in README.md
-    mytags = [ "news", "sports" , "om"]
-    for tag in mytags:
+    
+    post_query = (db.post_item.ALL)
+    rows = db(post_query).select()
+    for row in rows:    # 3. get post_item TABLE record for a tag_item record
+        print("         row is-----", row.id, row.content, row.auth_signature)
+        tweets.append({"id": row.id, "content": row.content, "auth_signature": row.auth_signature})
+
+    tags_list = db().select(db.tag_item.name, distinct=True)
+    tags = [tag["name"] for tag in tags_list] 
+
+    result = {"tweets":tweets, "tags": tags }   
+    return result;
+
+# ----------------------- -------------------------
+def get_tweets_for_tags(tag_list):
+    tweets = [] # init 
+    # nested loop 3 sets
+    for tag in tag_list:   # 1. loop through each tag
         print(tag)
         tag_query = (db.tag_item.name == tag)
         rows2 = db(tag_query).select()
-        for row2 in rows2:
+        for row2 in rows2:      # 2. loop through each tag_item record for a tag (ex. news)
             print("tag_item ---- row2 is:", row2.post_item_id)
 
             post_query = (db.post_item.id == row2.post_item_id)
             rows = db(post_query).select()
-            for row in rows:
+            for row in rows:    # 3. get post_item TABLE record for a tag_item record
                 print("         row is-----", row.id, row.content, row.auth_signature)
                 tweets.append({"id": row.id, "content": row.content, "auth_signature": row.auth_signature})
 
-    '''
-    query = db.tag_item.name.belongs(myids)
-    rows = db(query).select()
-    for row in rows:
-        print(row.post_item_id)
-
-    query = (db.tag_item.post_item_id == post_item_id) # to delete tag_item table record
-    myset = db(query)
-    myset.delete()
-
-    #tweets = db().select(db.post_item.ALL)
-    myids = [1, 2]
-    query = db.post_item.id.belongs(myids)
-    tweets = db(query).select()
-    print("tweets --------", tweets)
-    '''
-
+    
     tags_list = db().select(db.tag_item.name, distinct=True)
-    tags = [tag["name"] for tag in tags_list]    
-    return {"tweets":tweets, "tags": tags }
-   
+    tags = [tag["name"] for tag in tags_list] 
+    result = {"tweets":tweets, "tags": tags }   
+    return result;
+
+# --------------------------------------------------------
+@action("api/posts", method="GET")
+def posts():
+    tags = request.query.get('tags')   
+    print("tags: are ----", tags)
+    # multiple tags as one string are separated by comma when Axios front-end sends
+    # so, split them into a list of tags
+    tag_list = tags.split(',') if tags else []
+    # tag_list = [ "news", "sports" , "om"]
+
+    if len(tag_list) == 0:
+        final_result = get_all_tweets()
+    else:
+        final_result = get_tweets_for_tags(tag_list)  # call the function to get tweets for tags
+    return final_result
+
 
 # ------------------
 def split_text_and_hashtags(text):
