@@ -37,3 +37,29 @@ db.commit()
 4. go to the github Vscode, you see 2 FILES changed, commit these 2 files and Git push
    file storage.db
    service.storage
+
+# ---------- SQL queries ----------------------
+
+### ----- from same above shell
+
+db.executesql('select \* from tag_item')
+db.executesql('delete from post_item where id > 10')
+
+for row in db(db.tag_item.id > 20).select():
+.... print(row.id)
+
+for row in db().select(db.tag_item.ALL):
+... print(row.post_item_id)
+
+### ------------------------------- Dynamic list works -----
+
+mytags = [ "news", "sports" , "om"]
+query = db.tag_item.name.belongs(myids)
+rows = db(query).select()
+for row in rows:
+... print(row.post_item_id)
+
+#### ---- delete --------
+
+db(db.mytable.id == myid).delete()
+db.commit()

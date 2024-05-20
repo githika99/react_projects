@@ -58,37 +58,40 @@ def posts():
     print("tags: are222----", tags)
     tag_list = tags.split(',') if tags else []
 
+    # this worked in  "py4web shell apps", see details in README.md
+    mytags = [ "news", "sports" , "om"]
+    for tag in mytags:
+        print(tag)
+        tag_query = (db.tag_item.name == tag)
+        rows2 = db(tag_query).select()
+        for row2 in rows2:
+            print(row2.post_item_id)
+
+            post_query = (db.post_item.id == row2.post_item_id)
+            rows = db(post_query).select()
+            for row in rows:
+                print(row.id, row.content, row.auth_signature)
+
     '''
-    posts = db.post_item
-    categories = db.tag_item
+    query = db.tag_item.name.belongs(myids)
+    rows = db(query).select()
+    for row in rows:
+        print(row.post_item_id)
 
-    # Subquery to get relevant category IDs
-    category_subquery = categories.id.filter(categories.name.isin(tag_list))
+    query = (db.tag_item.post_item_id == post_item_id) # to delete tag_item table record
+    myset = db(query)
+    myset.delete()
 
-    # Join and filter posts based on category IDs
-    tweets =  (posts
-          .join(categories, on=(posts.id == categories.post_item_id))
-          .select(posts.ALL)  # Select all columns from the tweet_post table
-          .filter(categories.id.isin(category_subquery))
-         )
-    
-SELECT p.*
-FROM tweet_post p
-INNER JOIN tweet_category c ON p.id = c.tweet_post_id
-WHERE c.category_id IN (
-  SELECT id
-  FROM tweet_category
-  WHERE category_id IN (?, ?, ?)  -- Placeholder for category IDs
-)
+    #tweets = db().select(db.post_item.ALL)
+    myids = [1, 2]
+    query = db.post_item.id.belongs(myids)
+    tweets = db(query).select()
+    print("tweets --------", tweets)
+    '''
 
-https://nicozanf.github.io/py4web-doc/en/master/chapter-07.html#find-exclude-sort
-
-'''
-    tweets = db().select(db.post_item.ALL)
     tags_list = db().select(db.tag_item.name, distinct=True)
     tags = [tag["name"] for tag in tags_list]    
-    print("tweets", tweets)
-    return {"tweets":tweets, "tags": tags }
+    return {"tweets":[], "tags": tags }
    
 
 # ------------------
@@ -150,7 +153,11 @@ def posts():
     username = auth.get_user().get('username')  # check why username is None, it should be logged in user
     username = "gitu"
     augh_sig_encoded = generate_auth_signature(username)
+    # insert into post_item table
     postID = db.post_item.insert(content=text, auth_signature=augh_sig_encoded)
+    print("-----Inserted------ postID is:", postID)
+
+    # insert into tag_item table
     for hashtag in hashtags:
         db.tag_item.insert(post_item_id=postID, name=hashtag)
 
