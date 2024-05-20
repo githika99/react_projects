@@ -55,7 +55,7 @@ def tags():
 def get_all_tweets():
     tweets = [] # init 
     
-    post_query = (db.post_item.ALL)
+    post_query = (db.post_item.id > 0)
     rows = db(post_query).select()
     for row in rows:    # 3. get post_item TABLE record for a tag_item record
         print("         row is-----", row.id, row.content, row.auth_signature)
