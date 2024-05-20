@@ -58,6 +58,7 @@ def posts():
     print("tags: are222----", tags)
     tag_list = tags.split(',') if tags else []
 
+    tweets = [] # init 
     # this worked in  "py4web shell apps", see details in README.md
     mytags = [ "news", "sports" , "om"]
     for tag in mytags:
@@ -65,12 +66,13 @@ def posts():
         tag_query = (db.tag_item.name == tag)
         rows2 = db(tag_query).select()
         for row2 in rows2:
-            print(row2.post_item_id)
+            print("tag_item ---- row2 is:", row2.post_item_id)
 
             post_query = (db.post_item.id == row2.post_item_id)
             rows = db(post_query).select()
             for row in rows:
-                print(row.id, row.content, row.auth_signature)
+                print("         row is-----", row.id, row.content, row.auth_signature)
+                tweets.append({"id": row.id, "content": row.content, "auth_signature": row.auth_signature})
 
     '''
     query = db.tag_item.name.belongs(myids)
@@ -91,7 +93,7 @@ def posts():
 
     tags_list = db().select(db.tag_item.name, distinct=True)
     tags = [tag["name"] for tag in tags_list]    
-    return {"tweets":[], "tags": tags }
+    return {"tweets":tweets, "tags": tags }
    
 
 # ------------------
