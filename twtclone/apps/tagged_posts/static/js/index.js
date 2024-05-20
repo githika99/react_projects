@@ -14,11 +14,16 @@ app.make_entry = function () {
   };
 };
 
-app.all_tags = ""; // init with empty string ; accuumulate all selcted tags here
+app.all_tags = []; // init with empty string ; accuumulate all selcted tags here
 // ------------------------
 app.get_all_selected_tags = function (tag) {
-  let comma = app.all_tags.length > 0 ? "," : "";
-  app.all_tags = app.all_tags + comma + tag;
+  // if tag already exists in the list, remove it, otherwise add it to list
+  if (app.all_tags.includes(tag)) {
+    app.all_tags = app.all_tags.filter((item) => item != tag); // remove tag
+  } else {
+    app.all_tags.push(tag); // add tag
+  }
+  console.log("all tags:", app.all_tags);
   return app.all_tags;
 };
 
@@ -49,7 +54,7 @@ app.config.methods = {
   // -----------------------------------
   query_for_changed_tags: function (tag) {
     const url = "/tagged_posts/api/posts/?";
-    const alltags = app.get_all_selected_tags(tag);
+    const alltags = app.get_all_selected_tags(tag).join(",");
     const parms = {
       tags: alltags,
     };
