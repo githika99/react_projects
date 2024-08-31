@@ -24,9 +24,9 @@ The following **required** functionality is completed:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented required features: If the link does not work, please visit: https://imgur.com/a/hQOFctL. 
+Here's a walkthrough of implemented required features:
 
-👉🏿<img src='https://imgur.com/a/hQOFctL' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+👉🏿<img src='https://imgur.com/a/3FcwcTv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  LICEcap
